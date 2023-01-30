@@ -1,7 +1,3 @@
-# Project-A
-This was my first project when I first started my journey into programming
-I has basic HTML and CSS with some basic java.
+My First Discord Bot
 
-*Disclaimer*
-All my projects are free of use
-You are free to use these codes or snippets for whatever you need. 
+Slightly Intelligent really helpful bot - Goal is to create a FAQ type bot for my discord server

@@ -116,4 +116,4 @@ const magehelpembed = new EmbedBuilder()
     
 
 
-client.login ("MTA2ODkxOTczMzM3OTk0NDQ4OA.GpyJo2.cGb2Od43SbscTzVOSqgApRX8i_GqgQkf73EcVI")
+client.login ("Token")

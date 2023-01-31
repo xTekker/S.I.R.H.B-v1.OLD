@@ -1,7 +1,9 @@
 const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions } = require('discord.js');
-const prefix = "~";
+const prefix = "/";
 const client = new Client ({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 const { ActivityType } = require('discord.js');
+const fs = require('node:fs');
+const path = require('node:path');
 
 client.on("ready", () => {
     console.log("SIRHB Is Online and Active");
@@ -10,6 +12,27 @@ client.on("ready", () => {
     client.user.setStatus('online');
 
 })
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply({content: 'Yeah. GG bro'});
+	}
+	if (commandName === 'help') {
+		await interaction.reply({ embeds: [helpembed], ephemeral: true });
+	}
+	if (commandName === 'faq') {
+		await interaction.reply({ embeds: [faqembed], ephemeral: true });
+	}
+	if (commandName === 'releasedate') {
+		await interaction.reply({ embeds: [releasedateembed], ephemeral: true });
+	}
+	if (commandName === 'whois') {
+        await interaction.reply({ embeds: [whoisembed], ephemeral: true });
+    }
+});
 
 client.on("messageCreate", (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -116,4 +139,4 @@ const magehelpembed = new EmbedBuilder()
     
 
 
-client.login ("Token")
+client.login ("Token Here")

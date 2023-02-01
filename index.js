@@ -2,25 +2,30 @@ const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permission
 const prefix = "/";
 const client = new Client ({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 const { ActivityType } = require('discord.js');
+const { ActionRowBuilder, Events, StringSelectMenuBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
 client.on("ready", () => {
     console.log("SIRHB Is Online and Active");
 
-    client.user.setActivity('~help', { type: ActivityType.Listening });
+    client.user.setActivity('/help', { type: ActivityType.Listening });
     client.user.setStatus('online');
 
 })
+//Command Section
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
 
+//If bot detects command /ping
 	if (commandName === 'ping') {
-		await interaction.reply({content: 'Yeah. GG bro'});
+//Reply with this message
+		await interaction.reply({content: 'Really? Im an artificially intelligent bot and the best you can do is /ping? Shame.'});
 	}
 	if (commandName === 'help') {
+//Or with this Embed which is defined below
 		await interaction.reply({ embeds: [helpembed], ephemeral: true });
 	}
 	if (commandName === 'faq') {
@@ -31,6 +36,34 @@ client.on('interactionCreate', async interaction => {
 	}
 	if (commandName === 'whois') {
         await interaction.reply({ embeds: [whoisembed], ephemeral: true });
+    }
+	if (commandName === 'whatisthis') {
+        await interaction.reply({ embeds: [whatisthisembed], ephemeral: true });
+    }
+	if (commandName === 'magehelp') {
+        		const row = new ActionRowBuilder()
+			.addComponents(
+				new StringSelectMenuBuilder()
+					.setCustomId('select')
+					.setPlaceholder('Select the issue')
+					.addOptions(
+						{
+							label: 'Select me',
+							value: '',
+						},
+						{
+							label: 'You can select me too',
+							value: 'second_option',
+						},
+					),
+			);
+        await interaction.reply({ embeds: [magehelpembed], components: [row], ephemeral: true });
+    }
+	if (commandName === 'knighthelp') {
+        await interaction.reply({ embeds: [knighthelpembed], ephemeral: true });
+    }
+    if (commandName === 'warriorhelp') {
+        await interaction.reply({ embeds: [warriorhelpembed], ephemeral: true });
     }
 });
 
@@ -44,33 +77,9 @@ client.on("messageCreate", (message) => {
     const messageArray = message.content.split (" ");
     const argument = messageArray.slice(1);
     const cmd = messageArray[0];
-
-    //Commands
-//Help Directory
-  if (command === 'help') (
-    message.channel.send({ embeds: [helpembed] })
-  )
-//FAQ Command
-  if (command === 'faq') (
-      message.channel.send({ embeds: [faqembed]}) //Make this tomorrow
-  ) 
-//Release Date
-    if (command === 'releasedate') (
-        message.channel.send({ embeds: [releasedateembed] })
-    )
- //Who is SIRHB   
-    if (command === 'whois') (
-        message.channel.send({ embeds: [whoisembed] })
-   )
-//Q1: What is this place?
-    if (command === 'whatisthis') (
-        message.channel.send({ embeds: [whatisthisembed] })
-    )
-//Q2: Mage Help 1 - How to get a mage class
-    if (command === 'magehelp') (
-        message.channel.send ({ embeds: [magehelpembed] })
-    )
 })
+
+
 //Embed Section
 
 //Help Directory Embed
@@ -109,7 +118,7 @@ const releasedateembed = new EmbedBuilder()
     )
 	.setTimestamp()
 	.setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
-    
+
 //Whois command embed
 const whoisembed = new EmbedBuilder()
 	.setColor(0x0099FF)
@@ -136,7 +145,25 @@ const magehelpembed = new EmbedBuilder()
     )
     .setTimestamp()
     .setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
+
+//Knighthelp command embed with drop down menu
+const knighthelpembed = new EmbedBuilder()
+    .setColor(0x0099FF)
+    .addFields(
+        { name: 'You need some help with the Mage Class, Hero? Use the drop down menu to select the issue.', value: 'Why do you think I hold the answers?', inline: true },
+    )
+    .setTimestamp()
+    .setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
+
+//Warriorhelp command embed with drop down menu
+const warriorhelpembed = new EmbedBuilder()
+    .setColor(0x0099FF)
+    .addFields(
+        { name: 'You need some help with the Warrior Class, Hero? Use the drop down menu to select the issue.', value: 'Why do you think I hold the answers?', inline: true },
+    )
+    .setTimestamp()
+    .setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
     
 
 
-client.login ("Token Here")
+client.login ("MTA2ODkxOTczMzM3OTk0NDQ4OA.G82Rq6.9_oGRxD4oC_fbBlnRBopVcQVKXfI56CH_XAbsw")

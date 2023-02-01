@@ -166,4 +166,4 @@ const warriorhelpembed = new EmbedBuilder()
     
 
 
-client.login ("MTA2ODkxOTczMzM3OTk0NDQ4OA.G82Rq6.9_oGRxD4oC_fbBlnRBopVcQVKXfI56CH_XAbsw")
+client.login ("Token")

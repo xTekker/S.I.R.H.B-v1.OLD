@@ -1,13 +1,12 @@
-const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions } = require('discord.js');
+const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, ActivityType, ActionRowBuilder, Events, StringSelectMenuBuilder, GuildMembers } = require('discord.js');
 const prefix = "/";
 const client = new Client ({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
-const { ActivityType } = require('discord.js');
-const { ActionRowBuilder, Events, StringSelectMenuBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
+const { guildMemberAdd } = require('discord.js');
 
 client.on("ready", () => {
-    console.log("SIRHB Is Online and Active");
+    console.log("SIRHB Ready");
 
     client.user.setActivity('/help', { type: ActivityType.Listening });
     client.user.setStatus('online');
@@ -18,7 +17,10 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
-
+//Status command
+    if (commandName === 'status') {
+    await interaction.reply({content: 'SIRHB Ready - Errors: 0 - Bot Ver: 1.0', ephemeral: true })
+    }
 //If bot detects command /ping
 	if (commandName === 'ping') {
 //Reply with this message
@@ -48,8 +50,9 @@ client.on('interactionCreate', async interaction => {
 					.setPlaceholder('Select the issue')
 					.addOptions(
 						{
+
 							label: 'Select me',
-							value: '',
+							value: 'Testing'
 						},
 						{
 							label: 'You can select me too',
@@ -64,6 +67,9 @@ client.on('interactionCreate', async interaction => {
     }
     if (commandName === 'warriorhelp') {
         await interaction.reply({ embeds: [warriorhelpembed], ephemeral: true });
+    }
+    if (commandName === 'shrob') {
+        await interaction.reply({ embeds: [shrobembed]});
     }
 });
 
@@ -163,7 +169,13 @@ const warriorhelpembed = new EmbedBuilder()
     )
     .setTimestamp()
     .setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
-    
 
+const shrobembed = new EmbedBuilder()
+    .setColor(0x0099FF)
+    .addFields(
+        { name: 'Shrob Cant Code', value: 'and is a massive douche :)', inline: true },
+    )
+    .setTimestamp()
+    .setFooter({ text: 'SIRHB by xTekker#1728', iconURL: 'https://i.imgur.com/Akc3akA.png' });
 
 client.login ("Token")

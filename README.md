@@ -9,5 +9,5 @@ Slightly Intelligent Really Helpful Bot
 2023 © xTekker
 
 Discord Server for Support
-https://discord.gg/f5wBFbXKAM
-*Support will not be given for self hosted versions of this bot, Only bots invited from Top.gg will be provided with support.
+https://discord.gg/f5wBFbXKAM - 
+Support will not be given for self hosted versions of this bot, Only bots invited from Top.gg will be provided with support.

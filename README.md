@@ -11,3 +11,5 @@ Slightly Intelligent Really Helpful Bot
 Discord Server for Support
 https://discord.gg/f5wBFbXKAM - 
 Support will not be given for self hosted versions of this bot, Only bots invited from Top.gg will be provided with support.
+
+*Disclaimer: This bot is written in Javascript. The version on TOP.GG is the Python Version, both versions are updated, maintained and supported
